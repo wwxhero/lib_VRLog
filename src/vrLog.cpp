@@ -1,9 +1,9 @@
 #include "pch.h"
-#include "ik.h"
+#include "vrLog.h"
 #include <string>
 #include <sstream>
 #include <Windows.h>
-float ik_test(float theta)
+int ik_test(int theta)
 {
 	//std::stringstream info;
 	//info << theta;

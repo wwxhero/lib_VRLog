@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 
-VRLOGLIB(float, ik_test)(float theta);
+VRLOGLIB(int, ik_test)(int verifying);
 
 #ifdef __cplusplus
 }
