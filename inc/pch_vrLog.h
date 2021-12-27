@@ -4,8 +4,8 @@
 // However, files listed here are ALL re-compiled if any one of them is updated between builds.
 // Do not add files here that you will be updating frequently as this negates the performance advantage.
 
-#ifndef PCH_H
-#define PCH_H
+#ifndef PCH_VRLOG_H
+#define PCH_VRLOG_H
 
 // add headers that you want to pre-compile here
 #if defined _WINDOWS
@@ -25,5 +25,28 @@
 #define VRLOGLIB(rtype, func)\
 	__declspec(dllimport) rtype __stdcall func
 #endif
+
+
+
+#ifdef _DEBUG
+
+typedef struct _HLOG
+{
+	void* p;
+} HLOG;
+
+typedef struct _HLOG_i
+{
+	void* p;
+} HLOG_i;
+
+#else
+
+typedef void* HLOG;
+typedef void* HLOG_i;
+
+#endif
+
+
 
 #endif //PCH_H

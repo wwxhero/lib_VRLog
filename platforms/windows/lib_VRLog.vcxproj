@@ -90,11 +90,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Editor|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)Binaries\Win64</OutDir>
+    <OutDir>$(LIB_HIK_BIN)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)Binaries\Win64</OutDir>
+    <OutDir>$(LIB_HIK_BIN)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -126,8 +126,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;LIB_VRLOG_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>../../inc;</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch_VRLog.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>../../inc;$(LIB_HIK_INC)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -202,7 +202,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\inc\vrLog.h" />
-    <ClInclude Include="..\..\inc\pch.h" />
+    <ClInclude Include="..\..\inc\pch_vrLog.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\vrLog.cpp" />
@@ -217,5 +217,15 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\..\boost.1.77.0.0\build\boost.targets" Condition="Exists('..\..\..\boost.1.77.0.0\build\boost.targets')" />
+    <Import Project="..\..\..\boost_serialization-vc141.1.77.0.0\build\boost_serialization-vc141.targets" Condition="Exists('..\..\..\boost_serialization-vc141.1.77.0.0\build\boost_serialization-vc141.targets')" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 11.5.targets" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\boost.1.77.0.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\boost.1.77.0.0\build\boost.targets'))" />
+    <Error Condition="!Exists('..\..\..\boost_serialization-vc141.1.77.0.0\build\boost_serialization-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\boost_serialization-vc141.1.77.0.0\build\boost_serialization-vc141.targets'))" />
+  </Target>
 </Project>

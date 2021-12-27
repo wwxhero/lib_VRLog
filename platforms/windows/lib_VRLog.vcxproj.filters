@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\inc\pch.h">
+    <ClInclude Include="..\..\inc\vrLog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\inc\vrLog.h">
+    <ClInclude Include="..\..\inc\pch_vrLog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
